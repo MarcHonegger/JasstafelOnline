@@ -1,4 +1,12 @@
 <h1 fxLayoutAlign="center">Schieber</h1>
+<button mat-button class="bigger-text" (click)="addPoints(0)">Random</button>
+<button mat-button class="bigger-text" (click)="addPoints(20)">20</button>
+<button mat-button class="bigger-text" (click)="addPoints(50)">50</button>
+<button mat-button class="bigger-text" (click)="addPoints(100)">100</button>
+<button mat-button class="bigger-text" (click)="addPoints(157)">157</button>
+<button mat-button class="bigger-text" (click)="addPoints(257)">257</button>
+<div ng-if="showPoints">{{showPoints}}</div>
+<div ng-if="showPoints">{{totalPoints}}</div>
 <div fxLayout="row" fxLayout.lt-md="column">
     <div fxFlex fxFlex.md="50%" fxFlex.lg="40%" fxFlex.xl="30%" #zDiv class="z-div">
         <canvas #zCanvas></canvas>

@@ -6,6 +6,7 @@ body {
 
 * {
   font-family: 'Shadows Into Light', cursive;
+  color: whitesmoke;
 }
 
 .normal-font {
@@ -18,3 +19,7 @@ body {
 }
 html, body { height: 100%; }
 body { margin: 0; font-family: 'Roboto', sans-serif; }
+
+.bigger-text {
+  font-size: 20px;
+}

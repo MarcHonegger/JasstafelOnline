@@ -1,4 +1,4 @@
-import { NormalerTrumpf, SpezialTrumpf } from "./shared/trumpf";
+import { NormalerTrumpf, SpezialTrumpf } from './shared/trumpf';
 
 export class CoiiffeurSpiel {
     constructor(

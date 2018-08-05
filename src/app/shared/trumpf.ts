@@ -1,4 +1,4 @@
-import { Trumpf } from "../coiffeur-spiel";
+import { Trumpf } from '../coiffeur-spiel';
 
 export type NormalerTrumpf = 'Schilten' | 'Eicheln' | 'Rosen' | 'Schellen';
 

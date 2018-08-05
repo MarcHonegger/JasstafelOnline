@@ -1,4 +1,4 @@
-import { NormalerTrumpf } from "./shared/trumpf";
+import { NormalerTrumpf } from './shared/trumpf';
 
 export class SchieberSpiel {
     constructor(
@@ -10,7 +10,7 @@ export class SchieberSpiel {
 }
 
 export class SchieberRunde {
-    constructor (    
+    constructor (
         public readonly trumpf: NormalerTrumpf,
         public rundenPunkteTeamA: number,
         public rundenPunkteTeamB: number
