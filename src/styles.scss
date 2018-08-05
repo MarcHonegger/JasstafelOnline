@@ -1,11 +1,29 @@
 /* You can add global styles to this file, and also import other style files */
 body { 
-    background: url(http://mariafresa.net/newimages/blackboard-clipart-wallpaper-16.jpg) no-repeat center center fixed; 
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    font-family: 'Courier New', Courier, monospace;
-    color: whitesmoke;
-    font-size: 32px;
-  }
+  background: url(http://mariafresa.net/newimages/blackboard-clipart-wallpaper-16.jpg) no-repeat center center fixed; 
+  background-size: cover;
+}
+
+* {
+  font-family: 'Shadows Into Light', cursive;
+}
+
+.normal-font {
+  font-family: 'Courier New', Courier, monospace
+}
+
+.button {
+  background-color: rgba(255, 255, 255, 0);
+  border: none;
+  color: white;
+  padding: 10px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+.button:hover {
+  background-color: rgba(149, 156, 150, 0.308);
+  color: white;
+}
