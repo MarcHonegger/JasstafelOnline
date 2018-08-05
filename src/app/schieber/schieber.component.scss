@@ -1,27 +1,3 @@
-.widthLineZ {
-    height: 2px;
-    width: 100%;
-    background: red;
-}
-
-.heightLineZ {
-    height: calc(100% - 4px);
-    width: 2px;
-    background: red;
-    transform: rotate(45deg);
-    margin-left: 3000px;
-}
-
-.z-container {
-    height: 40vh;
-    width: 40vh;
-}
-
-.diagonal-line {
-    transform: rotate(-45deg);
-}
-
-.z-line-component {
-    display: flex;
-    align-items: center;
+.z-div {
+    margin: 30px;
 }

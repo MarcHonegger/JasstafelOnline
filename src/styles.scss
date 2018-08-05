@@ -12,18 +12,9 @@ body {
   font-family: 'Courier New', Courier, monospace
 }
 
-.button {
-  background-color: rgba(255, 255, 255, 0);
-  border: none;
-  color: white;
-  padding: 10px 25px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-}
-
 .button:hover {
   background-color: rgba(149, 156, 150, 0.308);
   color: white;
 }
+html, body { height: 100%; }
+body { margin: 0; font-family: 'Roboto', sans-serif; }

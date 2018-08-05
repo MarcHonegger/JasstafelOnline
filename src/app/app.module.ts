@@ -1,12 +1,15 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FlexLayoutModule } from '@angular/flex-layout';
-
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SchieberComponent } from './schieber/schieber.component';
 import { CoiffeurComponent } from './coiffeur/coiffeur.component';
+import { SharedModule } from './shared/shared.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { MatButtonModule } from '@angular/material/button';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 @NgModule({
   declarations: [
@@ -17,7 +20,10 @@ import { CoiffeurComponent } from './coiffeur/coiffeur.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FlexLayoutModule
+    SharedModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatButtonToggleModule
   ],
   providers: [],
   bootstrap: [AppComponent]

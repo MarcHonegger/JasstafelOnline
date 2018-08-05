@@ -1,10 +1,12 @@
-export class Spiel {
+import { NormalerTrumpf, SpezialTrumpf } from "./shared/trumpf";
+
+export class CoiiffeurSpiel {
     constructor(
-        public reihen: Reihe[]
+        public reihen: CoiffeurReihe[]
     ) {}
 }
 
-export class Reihe {
+export class CoiffeurReihe {
     constructor(
         public readonly trumpf: Trumpf,
         public readonly multiplikator: number,
@@ -13,15 +15,5 @@ export class Reihe {
     ) {}
 }
 
-export type NormalerTrumpf = 'Schilten' | 'Eicheln' | 'Rosen' | 'Schellen';
-
-export type SpezialTrumpf = 'Fünf Viertel' | 'Slalom' | 'Obenabe' | 'Uneufe' ;
-
 export type Trumpf =
     NormalerTrumpf | SpezialTrumpf | 'Frei wählbar';
-
-export class Swag {
-    public mapping = new Map<Trumpf, string>([
-        ['Schilten', 'mySwaggSchild.png']
-    ]);
-}
