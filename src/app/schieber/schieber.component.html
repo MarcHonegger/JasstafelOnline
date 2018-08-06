@@ -1,18 +1,17 @@
 <h1 fxLayoutAlign="center">Schieber</h1>
-<button mat-button class="bigger-text" (click)="addPoints(0)">Random</button>
-<button mat-button class="bigger-text" (click)="addPoints(20)">20</button>
-<button mat-button class="bigger-text" (click)="addPoints(50)">50</button>
-<button mat-button class="bigger-text" (click)="addPoints(100)">100</button>
-<button mat-button class="bigger-text" (click)="addPoints(157)">157</button>
-<button mat-button class="bigger-text" (click)="addPoints(257)">257</button>
-<div ng-if="showPoints">{{showPoints}}</div>
-<div ng-if="showPoints">{{totalPoints}}</div>
 <div fxLayout="row" fxLayout.lt-md="column">
-    <div fxFlex fxFlex.md="50%" fxFlex.lg="40%" fxFlex.xl="30%" #zDiv class="z-div">
-        <canvas #zCanvas></canvas>
+    <div fxFlex="100%" fxFlex.md="65%" fxFlex.lg="55%" fxFlex.xl="50%" fxLayout="row" fxLayout.lt-md="column">
+        <div fxLayout="column">
+            <h2 fxLayoutAlign="center">Marc und Michi</h2>
+            <jass-schieber-z flex></jass-schieber-z>
+        </div>
+        <div fxLayout="column">
+            <h2 fxLayoutAlign="center">Mami und Pascal</h2>
+            <jass-schieber-z flex></jass-schieber-z>
+        </div>
+
     </div>
     <div fxFlex>
 
     </div>
 </div>
-

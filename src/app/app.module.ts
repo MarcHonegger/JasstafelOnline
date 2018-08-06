@@ -9,12 +9,14 @@ import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatButtonModule, MatButtonToggleModule } from '@angular/material';
+import { SchieberZComponent } from './schieber/schieber-z/schieber-z.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SchieberComponent,
-    CoiffeurComponent
+    CoiffeurComponent,
+    SchieberZComponent
   ],
   imports: [
     BrowserModule,
