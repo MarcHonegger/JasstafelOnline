@@ -1,6 +1,19 @@
 <div fxLayout="column">
-        <div class="names" fxLayoutAlign="center">{{playerOne}} - {{playerTwo}}</div>
+    <div class="names" fxLayoutAlign="center">{{playerOne}} - {{playerTwo}}</div>
     <div #zDiv class="z-div">
         <canvas #zCanvas></canvas>
+    </div>
+    <div>
+        <div fxFlex="50%">
+            <button mat-button class="bigger-text" fxLayoutAlign="start">Stöck</button>
+            <button mat-button class="bigger-text" fxLayoutAlign="start">3-Blatt</button>
+            <button mat-button class="bigger-text" fxLayoutAlign="start">4-Blatt</button>
+            <button mat-button class="bigger-text" fxLayoutAlign="start">5-Blatt</button>
+        </div>
+        <div fxFlex="50%">
+            <button mat-button class="bigger-text" fxLayoutAlign="start">4 Gleiche</button>
+            <button mat-button class="bigger-text" fxLayoutAlign="start">4 Neuner</button>
+            <button mat-button class="bigger-text" fxLayoutAlign="start">4 Under</button>
+        </div>
     </div>
 </div>

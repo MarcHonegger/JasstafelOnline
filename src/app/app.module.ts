@@ -10,13 +10,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatButtonModule, MatButtonToggleModule, MatDialogModule, MatInputModule } from '@angular/material';
 import { SchieberZComponent } from './schieber/schieber-z/schieber-z.component';
+import { DialogPunkteComponent } from './dialog-punkte/dialog-punkte.component';
+import { DialogWeisenComponent } from './dialog-weisen/dialog-weisen.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SchieberComponent,
     CoiffeurComponent,
-    SchieberZComponent
+    SchieberZComponent,
+    DialogPunkteComponent,
+    DialogWeisenComponent
   ],
   imports: [
     BrowserModule,
@@ -29,6 +33,7 @@ import { SchieberZComponent } from './schieber/schieber-z/schieber-z.component';
     MatInputModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [DialogPunkteComponent, DialogWeisenComponent]
 })
 export class AppModule { }

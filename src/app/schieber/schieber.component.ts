@@ -1,4 +1,7 @@
 import { Component, Input } from '@angular/core';
+import { MatDialog } from '../../../node_modules/@angular/material';
+import { DialogPunkteComponent, DialogData } from '../dialog-punkte/dialog-punkte.component';
+import { DialogWeisenComponent } from '../dialog-weisen/dialog-weisen.component';
 
 @Component({
   selector: 'jass-schieber',
@@ -21,6 +24,8 @@ export class SchieberComponent {
 
   public currentPlayer: string | null = null;
 
+  constructor (public dialog: MatDialog) {}
+
   public nextPlayer() {
     switch (this.currentPlayer) {
       case this.playerTop:
@@ -36,6 +41,34 @@ export class SchieberComponent {
         this.currentPlayer = this.playerTop;
         break;
     }
+  }
+
+  openPunkteDialog(): void {
+    const dialogRef = this.dialog.open<DialogPunkteComponent, void, DialogData>(DialogPunkteComponent, {
+      width: '400px',
+      height: '500px',
+      disableClose: true
+    });
+    dialogRef.afterClosed().subscribe(p => {
+      if (p) {
+        this.addPoints(p.points);
+      }
+    });
+    this.getAmountOfLines();
+  }
+
+  openWeisenDialog(): void {
+    const dialogRef = this.dialog.open<DialogWeisenComponent, void, DialogData>(DialogWeisenComponent, {
+      width: '400px',
+      height: '500px',
+      disableClose: true
+    });
+    dialogRef.afterClosed().subscribe(p => {
+      if (p) {
+        this.addPoints(p.points);
+      }
+    });
+    this.getAmountOfLines();
   }
 
   public addPoints(addPoints: number) {

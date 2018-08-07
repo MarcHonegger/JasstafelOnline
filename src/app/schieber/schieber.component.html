@@ -1,11 +1,11 @@
 <h1 fxLayoutAlign="center">Schieber</h1>
-<button class="bigger-text" mat-button>Punkte Hinzufügen</button>
+<button class="bigger-text" mat-button (click)="openPunkteDialog()">Punkte Hinzufügen</button>
+<button class="bigger-text" mat-button (click)="openWeisenDialog()">Punkte Hinzufügen</button>
 <div fxLayout="row" fxLayout.lt-md="column">
     <div fxFlex="100%" fxFlex.md="65%" fxFlex.lg="55%" fxFlex.xl="50%" fxLayout="row" fxLayout.lt-md="column">
         <jass-schieber-z flex [playerOne]='playerTop' [playerTwo]='playerBottom' [twentyLines]='twentyLines' [fiftyLines]='fiftyLines' [hundredLines]='hundredLines' [rests]='rests'></jass-schieber-z>
         <jass-schieber-z flex [playerOne]='playerLeft' [playerTwo]='playerRight' [twentyLines]='twentyLines' [fiftyLines]='fiftyLines' [hundredLines]='hundredLines' [rests]='rests'></jass-schieber-z>
     </div>
     <div fxFlex>
-
     </div>
 </div>
