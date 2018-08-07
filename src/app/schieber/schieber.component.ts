@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'jass-schieber',
@@ -6,25 +6,50 @@ import { Component } from '@angular/core';
   styleUrls: ['./schieber.component.scss']
 })
 export class SchieberComponent {
+  @Input()
+  public points = 0;
+  public fiftyLines = 0;
+  public twentyLines = 0;
+  public hundredLines = 0;
+  public rests = 0;
+  public totalPoints = 0;
 
-  /* public completeRound(totalWidth: number, totalHeight: number) {
-    this.totalPoints += this.roundPoints;
-    this.roundPoints += this.rests;
-    this.amountOfHundredLines += Math.floor(this.roundPoints / 100);
-    this.amountOfFiftyLines += Math.floor((this.roundPoints % 100) / 50);
-    this.amountOfTwentyLines += Math.floor(((this.roundPoints % 100) % 50) / 20);
-    this.rests = Math.floor((this.roundPoints % 100) % 50) % 20;
-    this.roundPoints = 0;
+  public playerTop = 'Franz';
+  public playerBottom = 'Heidi';
+  public playerLeft = 'Frank';
+  public playerRight = 'Peter';
 
-    if (this.totalPoints >= 2500) {
-      this.totalPoints = 0;
-      this.amountOfFiftyLines = 0;
-      this.amountOfHundredLines = 0;
-      this.amountOfTwentyLines = 0;
+  public currentPlayer: string | null = null;
+
+  public nextPlayer() {
+    switch (this.currentPlayer) {
+      case this.playerTop:
+        this.currentPlayer = this.playerRight;
+        break;
+      case this.playerRight:
+        this.currentPlayer = this.playerBottom;
+        break;
+      case this.playerBottom:
+        this.currentPlayer = this.playerLeft;
+        break;
+      case this.playerLeft:
+        this.currentPlayer = this.playerTop;
+        break;
     }
+  }
 
-    this.drawHundredPoints(this.amountOfHundredLines);
-    this.drawTwentyPoints(totalWidth, totalHeight, this.amountOfTwentyLines);
-    this.drawFiftyPoints(totalHeight, totalWidth, this.amountOfFiftyLines);
-  } */
+  public addPoints(addPoints: number) {
+    this.points = addPoints;
+    this.getAmountOfLines();
+  }
+
+  public getAmountOfLines() {
+    this.totalPoints += this.points;
+    this.points += this.rests;
+
+    this.twentyLines += Math.floor(this.points % 100 % 50 / 20);
+    this.fiftyLines += Math.floor(this.points % 100 / 50);
+    this.hundredLines += Math.floor(this.points / 100);
+    this.rests = Math.floor(this.points % 100 % 50 % 20);
+  }
 }

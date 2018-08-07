@@ -1,15 +1,9 @@
 <h1 fxLayoutAlign="center">Schieber</h1>
+<button class="bigger-text" mat-button>Punkte Hinzufügen</button>
 <div fxLayout="row" fxLayout.lt-md="column">
     <div fxFlex="100%" fxFlex.md="65%" fxFlex.lg="55%" fxFlex.xl="50%" fxLayout="row" fxLayout.lt-md="column">
-        <div fxLayout="column">
-            <h2 fxLayoutAlign="center">Marc und Michi</h2>
-            <jass-schieber-z flex></jass-schieber-z>
-        </div>
-        <div fxLayout="column">
-            <h2 fxLayoutAlign="center">Mami und Pascal</h2>
-            <jass-schieber-z flex></jass-schieber-z>
-        </div>
-
+        <jass-schieber-z flex [playerOne]='playerTop' [playerTwo]='playerBottom' [twentyLines]='twentyLines' [fiftyLines]='fiftyLines' [hundredLines]='hundredLines' [rests]='rests'></jass-schieber-z>
+        <jass-schieber-z flex [playerOne]='playerLeft' [playerTwo]='playerRight' [twentyLines]='twentyLines' [fiftyLines]='fiftyLines' [hundredLines]='hundredLines' [rests]='rests'></jass-schieber-z>
     </div>
     <div fxFlex>
 

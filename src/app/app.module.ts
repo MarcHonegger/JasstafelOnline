@@ -8,7 +8,7 @@ import { CoiffeurComponent } from './coiffeur/coiffeur.component';
 import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MatButtonModule, MatButtonToggleModule } from '@angular/material';
+import { MatButtonModule, MatButtonToggleModule, MatDialogModule, MatInputModule } from '@angular/material';
 import { SchieberZComponent } from './schieber/schieber-z/schieber-z.component';
 
 @NgModule({
@@ -24,7 +24,9 @@ import { SchieberZComponent } from './schieber/schieber-z/schieber-z.component';
     SharedModule,
     BrowserAnimationsModule,
     MatButtonModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatDialogModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

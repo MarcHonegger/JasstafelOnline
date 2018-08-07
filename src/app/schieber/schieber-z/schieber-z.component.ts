@@ -1,4 +1,4 @@
-import { Component, ViewChild, AfterViewInit, ElementRef, Input } from '@angular/core';
+import { Component, ViewChild, AfterViewInit, ElementRef, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { fromEvent } from 'rxjs';
 import { debounceTime } from 'rxjs/operators' ;
 
@@ -7,7 +7,7 @@ import { debounceTime } from 'rxjs/operators' ;
   templateUrl: './schieber-z.component.html',
   styleUrls: ['./schieber-z.component.scss']
 })
-export class SchieberZComponent implements AfterViewInit {
+export class SchieberZComponent implements AfterViewInit, OnChanges {
   @ViewChild('zCanvas')
   public canvas!: ElementRef<HTMLCanvasElement>;
 
@@ -33,7 +33,9 @@ export class SchieberZComponent implements AfterViewInit {
   private textLineWidth = 3;
   private crossX = 50;
   private crossDistance = 25;
+  private restSize = 50;
 
+  // TODO default 0
   @Input()
   public twentyLines = 23;
   @Input()
@@ -41,7 +43,11 @@ export class SchieberZComponent implements AfterViewInit {
   @Input()
   public hundredLines = 7;
   @Input()
-  public Rests = 8;
+  public rests = 8;
+  @Input()
+  public playerOne = 'Peter';
+  @Input()
+  public playerTwo = 'Hans';
 
   constructor() {
     fromEvent(window, 'resize')
@@ -49,6 +55,12 @@ export class SchieberZComponent implements AfterViewInit {
         debounceTime(250)
       )
       .subscribe(() => this.onWindowResize());
+  }
+
+  public ngOnChanges(changes: SimpleChanges) {
+    if (Object.values(changes).some(c => !c.isFirstChange())) {
+      this.redraw();
+    }
   }
 
   public ngAfterViewInit() {
@@ -59,34 +71,47 @@ export class SchieberZComponent implements AfterViewInit {
 
     this.canvasContext = context;
 
-    this.onWindowResize();
+    this.redraw();
   }
 
   private redraw() {
-    console.warn('redraw');
     const totalWidth = this.canvas.nativeElement.width = this.div.nativeElement.offsetWidth;
-    const totalHeight = this.canvas.nativeElement.height = totalWidth * 0.8;
+    const totalHeight = this.canvas.nativeElement.height = totalWidth * 0.8 + this.restSize;
     this.bottomZLine = totalHeight - this.topBottomMargin;
 
     // customize Vars to Screen
-    let big = false;
-    if (totalWidth >= 400) {
-      big = true;
+    if (totalWidth >= 625) {
+      this.restSize = 110;
+      this.zLineWidth =  8;
+      this.pointLineWidth = 6;
+      this.textLineWidth = 4;
+      this.topBottomMargin = 22;
+      this.crossX = 70;
+      this.crossDistance = 35;
+      this.horizontalLineSpacing = 12;
+      this.diagonalOverlap = 8;
+    } else if (totalWidth >= 450) {
+      this.restSize = 90;
+      this.zLineWidth =  6;
+      this.pointLineWidth = 4;
+      this.textLineWidth = 3;
+      this.crossX = 60;
+      this.crossDistance = 30;
+      this.horizontalLineSpacing = 8;
+      this.diagonalOverlap = 6;
     } else {
-      big = false;
+      this.restSize = 70;
+      this.zLineWidth = 3;
+      this.pointLineWidth = 2;
+      this.textLineWidth = 1;
+      this.crossX = 60;
+      this.crossDistance =  25;
+      this.horizontalLineSpacing = 6;
+      this.diagonalOverlap = 4;
     }
-    const restSizeInPx = big ? '80px' : '50px';
-    const restSize = big ? 70 : 40;
-    this.zLineWidth = big ?  8 : 5;
-    this.pointLineWidth = big ? 7 : 3;
-    this.textLineWidth = big ? 4 : 1;
-    this.topBottomMargin = big ? 20 : 15;
-    this.crossX = big ? 90 : 55;
-    this.crossDistance = big ? 35 : 25;
-    this.horizontalLineSpacing = big ? 12 : 6;
-    this.diagonalOverlap = big ? 8 : 5;
     this.pointLineHeight = this.topBottomMargin * 2;
 
+    this.canvasContext.font = `${this.restSize}px Shadows Into Light`;
     this.canvasContext.lineWidth = this.zLineWidth;
     this.canvasContext.strokeStyle = this.zLineColor;
     this.drawZ(totalWidth);
@@ -97,9 +122,12 @@ export class SchieberZComponent implements AfterViewInit {
     this.drawFiftyPoints(totalWidth, totalHeight, this.fiftyLines);
     this.drawHundredPoints(this.hundredLines);
 
-    this.canvasContext.lineWidth = this.textLineWidth;
-    this.canvasContext.font = `${restSizeInPx} Shadows Into Light`;
-    this.canvasContext.strokeText('+' + this.Rests.toString(), totalWidth - restSize, totalHeight / 2 + restSize / 2, restSize);
+    if (this.rests > 0) {
+      const halfRestSize = this.restSize / 2;
+      const halfHeight = totalHeight / 2;
+      this.canvasContext.lineWidth = this.textLineWidth;
+      this.canvasContext.strokeText('+' + this.rests.toString(), totalWidth - this.restSize, halfHeight + halfRestSize, this.restSize);
+    }
   }
 
   private drawFiftyPoints(totalWidth: number, totalHeight: number, amountOfLines: number) {
