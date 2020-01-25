@@ -11,10 +11,8 @@ export interface DialogData {
   styleUrls: ['./dialog-punkte.component.scss']
 })
 export class DialogPunkteComponent {
-  public points = 0;
-
-  public addPoints() {
-    this.points += 50;
+  public addPoints(points: number) {
+    this.dialogRef.close({ points });
   }
 
   constructor(
@@ -22,6 +20,6 @@ export class DialogPunkteComponent {
     @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
 
   public closeDialog(): void {
-    this.dialogRef.close({ points: this.points });
+    this.dialogRef.close();
   }
 }
