@@ -77,8 +77,6 @@ export class SchieberZComponent implements AfterViewInit, OnChanges {
 
   private redraw() {
     const totalWidth = this.canvas.nativeElement.width = this.div.nativeElement.offsetWidth;
-    const totalHeight = this.canvas.nativeElement.height = totalWidth * 0.8 + this.remainderSize;
-    this.bottomZLine = totalHeight - this.topBottomMargin;
 
     // customize Vars to Screen
     if (totalWidth >= 625) {
@@ -110,6 +108,8 @@ export class SchieberZComponent implements AfterViewInit, OnChanges {
       this.horizontalLineSpacing = 6;
       this.diagonalOverlap = 4;
     }
+    const totalHeight = this.canvas.nativeElement.height = totalWidth * 0.8 + this.remainderSize;
+    this.bottomZLine = totalHeight - this.topBottomMargin;
     this.pointLineHeight = this.topBottomMargin * 2;
 
     this.canvasContext.font = `${this.remainderSize}px Shadows Into Light`;

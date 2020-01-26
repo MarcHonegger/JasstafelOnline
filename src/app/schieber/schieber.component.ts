@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '../../../node_modules/@angular/material';
-import { DialogPunkteComponent, DialogData } from '../dialog-punkte/dialog-punkte.component';
+import { DialogEndRoundComponent, DialogData } from '../dialog-endround/dialog-endround.component';
 import { DialogWeisenComponent } from '../dialog-weisen/dialog-weisen.component';
-import { SchieberSpiel, SchieberTeam } from '../schieber-spiel';
+import { SchieberSpiel, SchieberTeam, SchieberRunde } from '../schieber-spiel';
 
 @Component({
   selector: 'jass-schieber',
@@ -25,21 +25,24 @@ export class SchieberComponent {
     }
   }
 
+  private rounds = 0;
+
   public game: SchieberSpiel;
+
 
   constructor(public dialog: MatDialog) {
     this.game = new SchieberSpiel(true, new SchieberTeam('Hans', 'Heidi'), new SchieberTeam('Max', 'Müller'));
   }
 
-  openPunkteDialog(): void {
-    const dialogRef = this.dialog.open<DialogPunkteComponent, void, DialogData>(DialogPunkteComponent, {
-      width: '400px',
-      height: '500px',
+  openEndRoundDialog(): void {
+    const dialogRef = this.dialog.open<DialogEndRoundComponent, void, DialogData>(DialogEndRoundComponent, {
+      width: '600px',
+      height: '450px',
       disableClose: true
     });
-    dialogRef.afterClosed().subscribe(p => {
-      if (p) {
-        this.addPoints(p.points);
+    dialogRef.afterClosed().subscribe(data => {
+      if (data) {
+        this.addPoints(data.pointsTeamA, data.pointsTeamB);
       }
     });
   }
@@ -52,13 +55,13 @@ export class SchieberComponent {
     });
     dialogRef.afterClosed().subscribe(data => {
       if (data) {
-        this.addPoints(data.points);
+        this.addPoints(data.pointsTeamA, data.pointsTeamB);
       }
     });
   }
 
-  public addPoints(addPoints: number) {
-    this.game.teamA.addPoints(addPoints);
-    this.game.teamB.addPoints(157 - addPoints);
+  public addPoints(addPointsA: number, addPointsB: number) {
+    this.game.teamA.addPoints(addPointsA);
+    this.game.teamB.addPoints(addPointsB);
   }
 }

@@ -12,9 +12,14 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
+import { MatCheckboxModule } from '@angular/material';
+import { ReactiveFormsModule } from '@angular/forms';
+
 import { SchieberZComponent } from './schieber/schieber-z/schieber-z.component';
-import { DialogPunkteComponent } from './dialog-punkte/dialog-punkte.component';
+import { DialogEndRoundComponent } from './dialog-endround/dialog-endround.component';
 import { DialogWeisenComponent } from './dialog-weisen/dialog-weisen.component';
+import { HomepageComponent } from './homepage/homepage.component';
+import { DialogStartSchieberComponent } from './dialog-start-schieber/dialog-start-schieber.component';
 
 @NgModule({
   declarations: [
@@ -22,8 +27,10 @@ import { DialogWeisenComponent } from './dialog-weisen/dialog-weisen.component';
     SchieberComponent,
     CoiffeurComponent,
     SchieberZComponent,
-    DialogPunkteComponent,
-    DialogWeisenComponent
+    DialogEndRoundComponent,
+    DialogWeisenComponent,
+    HomepageComponent,
+    DialogStartSchieberComponent
   ],
   imports: [
     BrowserModule,
@@ -33,10 +40,12 @@ import { DialogWeisenComponent } from './dialog-weisen/dialog-weisen.component';
     MatButtonModule,
     MatButtonToggleModule,
     MatDialogModule,
-    MatInputModule
+    MatInputModule,
+    MatCheckboxModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [DialogPunkteComponent, DialogWeisenComponent]
+  entryComponents: [DialogEndRoundComponent, DialogWeisenComponent, DialogStartSchieberComponent]
 })
 export class AppModule { }
