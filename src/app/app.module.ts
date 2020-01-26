@@ -8,7 +8,10 @@ import { CoiffeurComponent } from './coiffeur/coiffeur.component';
 import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MatButtonModule, MatButtonToggleModule, MatDialogModule, MatInputModule } from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input';
 import { SchieberZComponent } from './schieber/schieber-z/schieber-z.component';
 import { DialogPunkteComponent } from './dialog-punkte/dialog-punkte.component';
 import { DialogWeisenComponent } from './dialog-weisen/dialog-weisen.component';

@@ -11,8 +11,8 @@ export interface DialogData {
   styleUrls: ['./dialog-punkte.component.scss']
 })
 export class DialogPunkteComponent {
-  public addPoints(points: number) {
-    this.dialogRef.close({ points });
+  public addPoints(points: any) {
+    this.dialogRef.close({ points: parseInt(points, 10) });
   }
 
   constructor(

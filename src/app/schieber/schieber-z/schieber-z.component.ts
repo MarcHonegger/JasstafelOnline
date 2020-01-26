@@ -1,17 +1,18 @@
-import { Component, ViewChild, AfterViewInit, ElementRef, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, ViewChild, AfterViewInit, ElementRef, Input, OnChanges, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
 import { fromEvent } from 'rxjs';
 import { debounceTime } from 'rxjs/operators' ;
 
 @Component({
   selector: 'jass-schieber-z',
   templateUrl: './schieber-z.component.html',
-  styleUrls: ['./schieber-z.component.scss']
+  styleUrls: ['./schieber-z.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SchieberZComponent implements AfterViewInit, OnChanges {
-  @ViewChild('zCanvas')
+  @ViewChild('zCanvas', {static: false})
   public canvas!: ElementRef<HTMLCanvasElement>;
 
-  @ViewChild('zDiv')
+  @ViewChild('zDiv', {static: false})
   public div!: ElementRef<HTMLDivElement>;
 
   private canvasContext!: CanvasRenderingContext2D;
@@ -26,28 +27,28 @@ export class SchieberZComponent implements AfterViewInit, OnChanges {
   private pointLineHeight = this.topBottomMargin * 2;
   private horizontalLineSpacing = 6;
   private diagonalOverlap = 3;
-  private readonly pointLineColor = 'white';
+  private readonly pointLineColor = 'black';
 
   // Other Vars
   private bottomZLine = 0;
   private textLineWidth = 3;
   private crossX = 50;
   private crossDistance = 25;
-  private restSize = 50;
+  private remainderSize = 50;
 
   // TODO default 0
   @Input()
-  public twentyLines = 23;
+  public twentyLines = 0;
   @Input()
-  public fiftyLines = 3;
+  public fiftyLines = 0;
   @Input()
-  public hundredLines = 7;
+  public hundredLines = 0;
   @Input()
-  public rests = 8;
+  public remainder = 0;
   @Input()
-  public playerOne = 'Peter';
+  public playerOne = '';
   @Input()
-  public playerTwo = 'Hans';
+  public playerTwo = '';
 
   constructor() {
     fromEvent(window, 'resize')
@@ -76,12 +77,12 @@ export class SchieberZComponent implements AfterViewInit, OnChanges {
 
   private redraw() {
     const totalWidth = this.canvas.nativeElement.width = this.div.nativeElement.offsetWidth;
-    const totalHeight = this.canvas.nativeElement.height = totalWidth * 0.8 + this.restSize;
+    const totalHeight = this.canvas.nativeElement.height = totalWidth * 0.8 + this.remainderSize;
     this.bottomZLine = totalHeight - this.topBottomMargin;
 
     // customize Vars to Screen
     if (totalWidth >= 625) {
-      this.restSize = 110;
+      this.remainderSize = 110;
       this.zLineWidth =  8;
       this.pointLineWidth = 6;
       this.textLineWidth = 4;
@@ -91,7 +92,7 @@ export class SchieberZComponent implements AfterViewInit, OnChanges {
       this.horizontalLineSpacing = 12;
       this.diagonalOverlap = 8;
     } else if (totalWidth >= 450) {
-      this.restSize = 90;
+      this.remainderSize = 90;
       this.zLineWidth =  6;
       this.pointLineWidth = 4;
       this.textLineWidth = 3;
@@ -100,7 +101,7 @@ export class SchieberZComponent implements AfterViewInit, OnChanges {
       this.horizontalLineSpacing = 8;
       this.diagonalOverlap = 6;
     } else {
-      this.restSize = 70;
+      this.remainderSize = 70;
       this.zLineWidth = 3;
       this.pointLineWidth = 2;
       this.textLineWidth = 1;
@@ -111,7 +112,7 @@ export class SchieberZComponent implements AfterViewInit, OnChanges {
     }
     this.pointLineHeight = this.topBottomMargin * 2;
 
-    this.canvasContext.font = `${this.restSize}px Shadows Into Light`;
+    this.canvasContext.font = `${this.remainderSize}px Shadows Into Light`;
     this.canvasContext.lineWidth = this.zLineWidth;
     this.canvasContext.strokeStyle = this.zLineColor;
     this.drawZ(totalWidth);
@@ -122,11 +123,12 @@ export class SchieberZComponent implements AfterViewInit, OnChanges {
     this.drawFiftyPoints(totalWidth, totalHeight, this.fiftyLines);
     this.drawHundredPoints(this.hundredLines);
 
-    if (this.rests > 0) {
-      const halfRestSize = this.restSize / 2;
+    if (this.remainder > 0) {
+      const halfRemainderize = this.remainderSize / 2;
       const halfHeight = totalHeight / 2;
       this.canvasContext.lineWidth = this.textLineWidth;
-      this.canvasContext.strokeText('+' + this.rests.toString(), totalWidth - this.restSize, halfHeight + halfRestSize, this.restSize);
+      const message = `+${this.remainder}`;
+      this.canvasContext.strokeText(message, totalWidth - this.remainderSize, halfHeight + halfRemainderize, this.remainderSize);
     }
   }
 

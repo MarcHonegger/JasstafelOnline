@@ -1,18 +1,55 @@
 import { NormalerTrumpf } from './shared/trumpf';
 
 export class SchieberSpiel {
+    public runden: ReadonlyArray<SchieberRunde> = [];
+
     constructor(
         public readonly mitMultiplikatoren: boolean,
-        public gesamtPunkteTeamA: number,
-        public gesamtPunkteTeamB: number,
-        public Runden: SchieberRunde []
+        public readonly teamA: SchieberTeam,
+        public readonly teamB: SchieberTeam
     ) {}
 }
 
 export class SchieberRunde {
-    constructor (
+    constructor(
         public readonly trumpf: NormalerTrumpf,
         public rundenPunkteTeamA: number,
         public rundenPunkteTeamB: number
     ) {}
+}
+
+export class SchieberTeam {
+    public get totalPoints(): number {
+        return this.hundredLines * 100
+            + this.fiftyLines * 50
+            + this.twentyLines * 20
+            + this.remainder;
+    }
+
+    public fiftyLines = 0;
+    public twentyLines = 0;
+    public hundredLines = 0;
+    public remainder = 0;
+
+    constructor(
+        public readonly player1: string,
+        public readonly player2: string
+    ) { }
+
+    public addPoints(points: number): void {
+        points += this.remainder;
+        while (points >= 100) {
+            points -= 100;
+            this.hundredLines++;
+        }
+        while (points >= 50) {
+            points -= 50;
+            this.fiftyLines++;
+        }
+        while (points >= 20) {
+            points -= 20;
+            this.twentyLines++;
+        }
+        this.remainder = points;
+    }
 }

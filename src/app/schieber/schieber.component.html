@@ -3,9 +3,7 @@
 <button class="bigger-text" mat-button (click)="openWeisenDialog()">Punkte Hinzufügen</button>
 <div fxLayout="row" fxLayout.lt-md="column">
     <div fxFlex="100%" fxFlex.md="65%" fxFlex.lg="55%" fxFlex.xl="50%" fxLayout="row" fxLayout.lt-md="column">
-        <jass-schieber-z flex [playerOne]='playerTop' [playerTwo]='playerBottom' [twentyLines]='twentyLines' [fiftyLines]='fiftyLines' [hundredLines]='hundredLines' [rests]='rests'></jass-schieber-z>
-        <jass-schieber-z flex [playerOne]='playerLeft' [playerTwo]='playerRight' [twentyLines]='twentyLines' [fiftyLines]='fiftyLines' [hundredLines]='hundredLines' [rests]='rests'></jass-schieber-z>
-    </div>
-    <div fxFlex>
+        <jass-schieber-z flex [playerOne]='game.teamA.player1' [playerTwo]='game.teamA.player2' [twentyLines]='game.teamA.twentyLines' [fiftyLines]='game.teamA.fiftyLines' [hundredLines]='game.teamA.hundredLines' [remainder]='game.teamA.remainder'></jass-schieber-z>
+        <jass-schieber-z flex [playerOne]='game.teamB.player1' [playerTwo]='game.teamB.player2' [twentyLines]='game.teamB.twentyLines' [fiftyLines]='game.teamB.fiftyLines' [hundredLines]='game.teamB.hundredLines' [remainder]='game.teamB.remainder'></jass-schieber-z>
     </div>
 </div>
