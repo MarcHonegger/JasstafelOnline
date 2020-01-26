@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialogRef } from '@angular/material';
+import { DialogData } from '../dialog-endround/dialog-endround.component';
 
 @Component({
   selector: 'jass-dialog-start-schieber',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DialogStartSchieberComponent implements OnInit {
 
-  constructor() { }
+  constructor(public dialogRef: MatDialogRef<DialogStartSchieberComponent, DialogData>) { }
 
   ngOnInit() {
+  }
+
+  public closeDialog(): void {
+    this.dialogRef.close();
   }
 
 }
