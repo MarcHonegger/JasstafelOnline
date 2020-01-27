@@ -5,6 +5,7 @@ import { FormBuilder, Validators, AbstractControl, FormGroup, ValidatorFn, Valid
 export interface DialogData {
   pointsTeamA: number;
   pointsTeamB: number;
+  multiplikator: number;
 }
 
 export const pointsOutOfRangeValidator: ValidatorFn = (control: FormGroup): ValidationErrors | null => {
@@ -27,6 +28,10 @@ export class DialogEndRoundComponent {
     return this.pointsForm.get('pointsB');
   }
 
+  public get multiplikator(): AbstractControl | null {
+    return this.pointsForm.get('multiplikator');
+  }
+
   constructor(
     public dialogRef: MatDialogRef<DialogEndRoundComponent, DialogData>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
@@ -34,7 +39,7 @@ export class DialogEndRoundComponent {
       this.pointsForm = fb.group({
         pointsA: [157, [pointsOutOfRangeValidator]],
         pointsB: [0, [pointsOutOfRangeValidator]],
-        isMatch: [false]
+        multiplikator: [1]
       });
 
       this.pointsA.valueChanges.subscribe(pA => this.valueChanged(pA, 157 - pA));
@@ -44,7 +49,9 @@ export class DialogEndRoundComponent {
   public readonly pointsForm: FormGroup;
 
   public addPoints() {
-    this.dialogRef.close({ pointsTeamA: this.pointsA.value, pointsTeamB: this.pointsB.value });
+    this.dialogRef.close({ pointsTeamA: this.pointsA.value,
+      pointsTeamB: this.pointsB.value,
+      multiplikator: this.multiplikator.value});
   }
 
     private valueChanged(pointsA: number, pointsB: number) {

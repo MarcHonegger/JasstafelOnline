@@ -42,7 +42,7 @@ export class SchieberComponent {
     });
     dialogRef.afterClosed().subscribe(data => {
       if (data) {
-        this.addPoints(data.pointsTeamA, data.pointsTeamB);
+        this.addPoints(data.pointsTeamA, data.pointsTeamB, data.multiplikator);
       }
     });
   }
@@ -55,13 +55,23 @@ export class SchieberComponent {
     });
     dialogRef.afterClosed().subscribe(data => {
       if (data) {
-        this.addPoints(data.pointsTeamA, data.pointsTeamB);
+        this.addPoints(data.pointsTeamA, data.pointsTeamB, data.multiplikator);
       }
     });
   }
 
-  public addPoints(addPointsA: number, addPointsB: number) {
+  public addPoints(addPointsA: number, addPointsB: number, multiplikator: number) {
+    if (this.game.mitMultiplikatoren) {
+      addPointsA *= multiplikator;
+      addPointsB *= multiplikator;
+    }
     this.game.teamA.addPoints(addPointsA);
     this.game.teamB.addPoints(addPointsB);
+
+    this.saveRound(addPointsA, addPointsB);
+  }
+
+  private saveRound(pointsA: number, pointsB: number) {
+
   }
 }

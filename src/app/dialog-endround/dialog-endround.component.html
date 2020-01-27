@@ -11,16 +11,16 @@
                 <mat-error class="error-text" *ngIf="!pointsB.valid">bitte e möglichi punktzahl igeh</mat-error>
             </mat-form-field>
         </div>
-        <mat-button-toggle-group fxLayoutAlign="row">
-            <mat-button-toggle value="left" aria-label="Text align left" fxFlex>
+        <mat-button-toggle-group formControlName="multiplikator" fxLayoutAlign="row">
+            <mat-button-toggle value="1" fxFlex checked="true">
                 <img src="assets/truempfe/Eicheln.svg" alt="Eichle" width="30px" height="40px">
                 <img src="assets/truempfe/Rosen.svg" alt="Rose" width="40px" height="40px">
             </mat-button-toggle>
-            <mat-button-toggle value="center" aria-label="Text align center" fxFlex>
+            <mat-button-toggle value="2" fxFlex>
                 <img src="assets/truempfe/Schellen.svg" alt="Schällä" width="40px" height="40px">
                 <img src="assets/truempfe/Schilten.svg" alt="Schilte" width="40px" height="40px">
             </mat-button-toggle>
-            <mat-button-toggle value="right" aria-label="Text align right" fxFlex>
+            <mat-button-toggle value="3" fxFlex>
                 <img src="assets/truempfe/Obenabe.svg" alt="Obeabe" width="30px" height="40px">
                 <img src="assets/truempfe/Undenufe.svg" alt="Uneufe" width="30px" height="40px">
             </mat-button-toggle>
