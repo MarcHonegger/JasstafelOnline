@@ -1,4 +1,51 @@
 <div class="bigger-text">Schieber Starte</div>
+
+<div cdkDropListGroup fxLayout="column">
+    <div fxFlex>
+        <div class="drag-and-drop-container" fxFlex>
+            <h2>Spieler</h2>
+
+            <div
+            cdkDropList
+            cdkDropListOrientation="horizontal"
+            #todoList="cdkDropList"
+            [cdkDropListData]="spieler"
+            class="drag-and-drop-list"
+            (cdkDropListDropped)="drop($event)"
+            fxLayout="row">
+            <div class="example-box" *ngFor="let item of spieler" cdkDrag>{{item}}</div>
+            </div>
+        </div>
+    </div>
+    <div fxLayout="row">
+        <div class="drag-and-drop-container" fxFlex>
+            <h2>Team eis</h2>
+
+            <div
+            cdkDropList
+            #doneList="cdkDropList"
+            [cdkDropListData]="spielerTeamA"
+            class="drag-and-drop-list"
+            (cdkDropListDropped)="drop($event)">
+            <div class="example-box" *ngFor="let item of spielerTeamA" cdkDrag>{{item}}</div>
+            </div>
+        </div>
+                
+        <div class="drag-and-drop-container" fxFlex>
+            <h2>Team zwei</h2>
+
+            <div
+            cdkDropList
+            #exampleList="cdkDropList"
+            [cdkDropListData]="spielerTeamB"
+            class="drag-and-drop-list"
+            (cdkDropListDropped)="drop($event)">
+            <div class="example-box" *ngFor="let item of spielerTeamB" cdkDrag>{{item}}</div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <button color="warn" mat-raised-button (click)="closeDialog()">
     Schlüüse
 </button>

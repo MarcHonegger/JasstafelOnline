@@ -14,6 +14,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 import { SchieberZComponent } from './schieber/schieber-z/schieber-z.component';
 import { DialogEndRoundComponent } from './dialog-endround/dialog-endround.component';
@@ -42,7 +43,8 @@ import { DialogStartSchieberComponent } from './dialog-start-schieber/dialog-sta
     MatDialogModule,
     MatInputModule,
     MatCheckboxModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent],
