@@ -39,8 +39,7 @@ export class SchieberComponent implements OnInit {
       const gameId = +map.get('gameId');
       if (gameId) {
         this.game = this.gameData.loadSchieberById(gameId);
-      }
-      else {
+      } else {
         this.game = undefined;
       }
     });
