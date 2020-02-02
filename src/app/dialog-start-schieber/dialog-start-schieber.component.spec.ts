@@ -1,9 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DialogStartSchieberComponent } from './dialog-start-schieber.component';
-import { MatButtonModule, MatDialogModule, MAT_DIALOG_DATA, MatDialogRef, MatAutocompleteModule } from '@angular/material';
+import { MatButtonModule, MatDialogModule, MAT_DIALOG_DATA, MatDialogRef, MatAutocompleteModule, MatInputModule } from '@angular/material';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { DragDropModule } from '@angular/cdk/drag-drop';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -13,9 +12,16 @@ describe('DialogStartSchieberComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ ReactiveFormsModule, MatAutocompleteModule, MatButtonModule,
-                 MatDialogModule, NoopAnimationsModule, RouterTestingModule.withRoutes([]) ],
-      declarations: [ DialogStartSchieberComponent ],
+      imports: [
+        ReactiveFormsModule,
+        MatAutocompleteModule,
+        MatButtonModule,
+        MatInputModule,
+        MatDialogModule,
+        NoopAnimationsModule,
+        RouterTestingModule.withRoutes([])
+      ],
+      declarations: [DialogStartSchieberComponent],
       providers: [
         { provide: MAT_DIALOG_DATA, useValue: {} },
         { provide: MatDialogRef, useValue: {} }
