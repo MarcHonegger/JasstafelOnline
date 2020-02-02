@@ -2,7 +2,7 @@
 
 <div cdkDropListGroup fxLayout="column">
     <div fxFlex>
-        <div class="drag-and-drop-container" fxFlex>
+        <div class="drag-and-drop-container" fxFlex="100%">
             <h2>Spieler</h2>
 
             <div
@@ -13,42 +13,75 @@
             class="drag-and-drop-list"
             (cdkDropListDropped)="drop($event)"
             fxLayout="row">
-            <div class="example-box" *ngFor="let item of spieler" cdkDrag>{{item}}</div>
+            <div class="drag-and-drop-box" *ngFor="let item of spieler" cdkDrag>{{item}}</div>
             </div>
         </div>
     </div>
-    <div fxLayout="row">
-        <div class="drag-and-drop-container" fxFlex>
-            <h2>Team eis</h2>
 
-            <div
-            cdkDropList
-            #doneList="cdkDropList"
-            [cdkDropListData]="spielerTeamA"
-            class="drag-and-drop-list"
-            (cdkDropListDropped)="drop($event)">
-            <div class="example-box" *ngFor="let item of spielerTeamA" cdkDrag>{{item}}</div>
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="35px" fxLayoutGap.xs="0px" fxFlex>
+        <div fxFlex fxLayoutGap="5px">
+            <div class="drag-and-drop-container" fxFlex>
+                <h3 class="team-blue">Spieler eis</h3>
+
+                <div
+                cdkDropList
+                #doneList="cdkDropList"
+                [cdkDropListData]="playerOne"
+                class="drag-and-drop-list"
+                (cdkDropListDropped)="drop($event)">
+                <div class="drag-and-drop-box" *ngFor="let item of playerOne" cdkDrag>{{item}}</div>
+                </div>
+            </div>
+                    
+            <div class="drag-and-drop-container" fxFlex>
+                <h3 class="team-blue">Spieler drüü</h3>
+
+                <div
+                cdkDropList
+                #exampleList="cdkDropList"
+                [cdkDropListData]="playerTwo"
+                class="drag-and-drop-list"
+                (cdkDropListDropped)="drop($event)">
+                <div class="drag-and-drop-box" *ngFor="let item of playerTwo" cdkDrag>{{item}}</div>
+                </div>
             </div>
         </div>
-                
-        <div class="drag-and-drop-container" fxFlex>
-            <h2>Team zwei</h2>
 
-            <div
-            cdkDropList
-            #exampleList="cdkDropList"
-            [cdkDropListData]="spielerTeamB"
-            class="drag-and-drop-list"
-            (cdkDropListDropped)="drop($event)">
-            <div class="example-box" *ngFor="let item of spielerTeamB" cdkDrag>{{item}}</div>
+        <div fxFlex fxLayoutGap="5px">
+            <div class="drag-and-drop-container" fxFlex>
+                <h3 class="team-green">Spieler zwei</h3>
+
+                <div
+                cdkDropList
+                #exampleList="cdkDropList"
+                [cdkDropListData]="playerThree"
+                class="drag-and-drop-list"
+                (cdkDropListDropped)="drop($event)">
+                <div class="drag-and-drop-box" *ngFor="let item of playerThree" cdkDrag>{{item}}</div>
+                </div>
+            </div>
+                
+            <div class="drag-and-drop-container" fxFlex>
+                <h3 class="team-green">Spieler vier</h3>
+
+                <div
+                cdkDropList
+                #exampleList="cdkDropList"
+                [cdkDropListData]="playerFour"
+                class="drag-and-drop-list"
+                (cdkDropListDropped)="drop($event)">
+                <div class="drag-and-drop-box" *ngFor="let item of playerFour" cdkDrag>{{item}}</div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
-<button color="warn" mat-raised-button (click)="closeDialog()">
-    Schlüüse
-</button>
-<button color="primary" mat-raised-button (click)="startSchieber()">
-    spiil erstelle
-</button>
+<mat-dialog-actions>
+    <button color="warn" mat-raised-button (click)="closeDialog()">
+        Schlüüse
+    </button>
+    <button color="primary" mat-raised-button (click)="startSchieber()">
+        spiil erstelle
+    </button>
+</mat-dialog-actions>

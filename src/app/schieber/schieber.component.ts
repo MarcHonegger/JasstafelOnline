@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '../../../node_modules/@angular/material';
-import { DialogEndRoundComponent, DialogData } from '../dialog-endround/dialog-endround.component';
-import { DialogWeisenComponent } from '../dialog-weisen/dialog-weisen.component';
+import { DialogEndRoundComponent, DialogData } from './dialog-endround/dialog-endround.component';
+import { DialogWeisenComponent } from './dialog-weisen/dialog-weisen.component';
 import { SchieberSpiel, SchieberTeam, SchieberRunde } from '../schieber-spiel';
+import { GameDatabase } from '../game-database';
 
 @Component({
   selector: 'jass-schieber',
@@ -25,19 +26,17 @@ export class SchieberComponent {
     }
   }
 
-  private rounds = 0;
-
   public game: SchieberSpiel;
 
 
-  constructor(public dialog: MatDialog) {
-    this.game = new SchieberSpiel(true, new SchieberTeam('Hans', 'Heidi'), new SchieberTeam('Max', 'Müller'));
+  constructor(public dialog: MatDialog, public gameData: GameDatabase) {
+    this.game = gameData.loadSchieberById(3);
   }
 
   openEndRoundDialog(): void {
     const dialogRef = this.dialog.open<DialogEndRoundComponent, void, DialogData>(DialogEndRoundComponent, {
       width: '600px',
-      height: '450px',
+      height: '500px',
       disableClose: true
     });
     dialogRef.afterClosed().subscribe(data => {

@@ -1,22 +1,14 @@
-.drag-and-drop-container {
-  width: 400px;
-  max-width: 100%;
-  margin: 0 25px 25px 0;
-  display: inline-block;
-  vertical-align: top;
-}
-
 .drag-and-drop-list {
   border: solid 1px #ccc;
-  min-height: 60px;
+  height: 60px;
   background: white;
   border-radius: 4px;
   overflow: hidden;
   display: block;
 }
 
-.example-box {
-  padding: 20px 10px;
+.drag-and-drop-box {
+  padding: 15px 10px;
   border-bottom: solid 1px #ccc;
   color: rgba(0, 0, 0, 0.87);
   display: flex;
@@ -26,7 +18,7 @@
   box-sizing: border-box;
   cursor: move;
   background: white;
-  font-size: 14px;
+  font-size: 18px;
 }
 
 .cdk-drag-preview {
@@ -42,13 +34,21 @@
 }
 
 .cdk-drag-animating {
-  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 0);
 }
 
-.example-box:last-child {
+.drag-and-drop-box:last-child {
   border: none;
 }
 
-.example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
+.drag-and-drop-list.cdk-drop-list-dragging .drag-and-drop-box:not(.cdk-drag-placeholder) {
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.team-blue {
+  color:blue;
+}
+
+.team-green {
+  color:green;
 }

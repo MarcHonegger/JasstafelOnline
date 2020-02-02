@@ -11,7 +11,7 @@ const routes: Routes = [
     component: HomepageComponent
   },
   {
-    path: 'Schieber',
+    path: 'Schieber/:gameId',
     component: SchieberComponent
   },
   {

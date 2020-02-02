@@ -1,9 +1,15 @@
 import { NormalerTrumpf } from './shared/trumpf';
+import { Trumpf } from './coiffeur-spiel';
+
+export class SchieberTrümpfe {
+    public schieberTrümpfe: Array<Trumpf> = ['Eicheln', 'Rosen', 'Schellen', 'Schilten', 'Obenabe', 'Uneufe'];
+}
 
 export class SchieberSpiel {
     public runden: ReadonlyArray<SchieberRunde> = [];
 
     constructor(
+        public readonly gameId: number,
         public readonly mitMultiplikatoren: boolean,
         public readonly teamA: SchieberTeam,
         public readonly teamB: SchieberTeam
@@ -26,14 +32,13 @@ export class SchieberTeam {
             + this.remainder;
     }
 
-    public fiftyLines = 0;
-    public twentyLines = 0;
-    public hundredLines = 0;
-    public remainder = 0;
-
     constructor(
         public readonly player1: string,
-        public readonly player2: string
+        public readonly player2: string,
+        public twentyLines = 0,
+        public fiftyLines = 0,
+        public hundredLines = 0,
+        public remainder = 0
     ) { }
 
     public addPoints(points: number): void {

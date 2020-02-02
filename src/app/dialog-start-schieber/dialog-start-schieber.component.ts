@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
-import { DialogData } from '../dialog-endround/dialog-endround.component';
+import { DialogData } from '../schieber/dialog-endround/dialog-endround.component';
 import { moveItemInArray, transferArrayItem, CdkDragDrop } from '@angular/cdk/drag-drop';
+import { Router } from '@angular/router';
+import { GameDatabase } from '../game-database';
 
 @Component({
   selector: 'jass-dialog-start-schieber',
@@ -13,38 +15,46 @@ export class DialogStartSchieberComponent {
     'Franz',
     'Heidi',
     'Franzina',
-    'Heidi4.0',
-    'Heidi5.0',
-    'Heidi6.0',
-    'Heidi7.0',
-    'Heidi8.0',
-    'Heidi9.0',
-    'Heidi10.0'
+    'Marc',
+    'Pascal',
+    'Jeanette',
+    'Michi'
   ];
 
-   spielerTeamA = [
-    'Müller',
-    'Max'
-  ];
+  playerOne: Array<string> = [];
+  playerTwo: Array<string> = [];
+  playerThree: Array<string> = [];
+  playerFour: Array<string> = [];
 
-  spielerTeamB = [
-    'Zürcher',
-    'Mustermann'
-  ];
+  constructor(public dialogRef: MatDialogRef<DialogStartSchieberComponent, DialogData>,
+              public router: Router,
+              private gameDatabase: GameDatabase) { }
 
-  constructor(public dialogRef: MatDialogRef<DialogStartSchieberComponent, DialogData>) { }
+  public startSchieber(): void {
+    const game = this.gameDatabase.createSchieber(this.playerOne[0], this.playerTwo[0], this.playerThree[0], this.playerFour[0]);
+    this.dialogRef.close();
+    this.router.navigate(['/Schieber', game.gameId]);
+  }
 
   public closeDialog(): void {
     this.dialogRef.close();
   }
 
-  drop(event: CdkDragDrop<string[]>) {
+  public drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
-      if (event.container.data.length === 2 &&
-      !(event.container.data === this.spieler)) {
-      return;
+      if (event.container.data.length === 1 &&
+        event.container.data !== this.spieler) {
+        transferArrayItem(event.container.data,
+                          event.previousContainer.data,
+                          0,
+                          0);
+        transferArrayItem(event.previousContainer.data,
+                          event.container.data,
+                          event.previousIndex + 1,
+                          event.currentIndex);
+        return;
       }
       transferArrayItem(event.previousContainer.data,
                         event.container.data,

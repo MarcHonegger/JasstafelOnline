@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { FormBuilder, Validators, AbstractControl, FormGroup, ValidatorFn, ValidationErrors } from '@angular/forms';
+import { FormBuilder, AbstractControl, FormGroup, ValidatorFn, ValidationErrors } from '@angular/forms';
 
 export interface DialogData {
   pointsTeamA: number;
@@ -54,18 +54,18 @@ export class DialogEndRoundComponent {
       multiplikator: this.multiplikator.value});
   }
 
-    private valueChanged(pointsA: number, pointsB: number) {
-      if (this.pointsA.valid) {
-        this.pointsB.setValue(pointsB, { emitEvent: false });
-      }
-      if (this.pointsB.valid) {
-        this.pointsA.setValue(pointsA, { emitEvent: false });
-      }
-      if (this.pointsA.value === 257) {
-        this.pointsB.setValue(0, { emitEvent: false });
-      } else if (this.pointsB.value === 257) {
-        this.pointsA.setValue(0, { emitEvent: false });
-      }
+  private valueChanged(pointsA: number, pointsB: number) {
+    if (this.pointsA.valid) {
+      this.pointsB.setValue(pointsB, { emitEvent: false });
+    }
+    if (this.pointsB.valid) {
+      this.pointsA.setValue(pointsA, { emitEvent: false });
+    }
+    if (this.pointsA.value === 257) {
+      this.pointsB.setValue(0, { emitEvent: false });
+    } else if (this.pointsB.value === 257) {
+      this.pointsA.setValue(0, { emitEvent: false });
+    }
   }
 
   public closeDialog(): void {

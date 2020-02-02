@@ -14,11 +14,11 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
-import {DragDropModule} from '@angular/cdk/drag-drop';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 import { SchieberZComponent } from './schieber/schieber-z/schieber-z.component';
-import { DialogEndRoundComponent } from './dialog-endround/dialog-endround.component';
-import { DialogWeisenComponent } from './dialog-weisen/dialog-weisen.component';
+import { DialogEndRoundComponent } from './schieber/dialog-endround/dialog-endround.component';
+import { DialogWeisenComponent } from './schieber/dialog-weisen/dialog-weisen.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { DialogStartSchieberComponent } from './dialog-start-schieber/dialog-start-schieber.component';
 
