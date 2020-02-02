@@ -28,6 +28,13 @@ jobs:
     needs: build_and_test
     if: github.ref == 'refs/heads/master'
     steps:
+      - uses: actions/checkout@v2
+      - name: Use latest Node.js 12
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - name: Install dependencies
+        run: npm ci
       - name: Deploy to GH Pages
         run: npm run deploy -- --name="Github Actions" --email=noreply@github.com
         env:
