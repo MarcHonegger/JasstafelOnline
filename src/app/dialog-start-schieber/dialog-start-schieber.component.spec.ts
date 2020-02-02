@@ -5,6 +5,7 @@ import { MatButtonModule, MatDialogModule, MAT_DIALOG_DATA, MatDialogRef, MatAut
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { RouterTestingModule } from '@angular/router/testing';
+import { ReactiveFormsModule } from '@angular/forms';
 
 describe('DialogStartSchieberComponent', () => {
   let component: DialogStartSchieberComponent;
@@ -12,7 +13,7 @@ describe('DialogStartSchieberComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ MatAutocompleteModule, MatButtonModule, MatDialogModule, NoopAnimationsModule, RouterTestingModule.withRoutes([]) ],
+      imports: [ ReactiveFormsModule, MatAutocompleteModule, MatButtonModule, MatDialogModule, NoopAnimationsModule, RouterTestingModule.withRoutes([]) ],
       declarations: [ DialogStartSchieberComponent ],
       providers: [
         { provide: MAT_DIALOG_DATA, useValue: {} },
