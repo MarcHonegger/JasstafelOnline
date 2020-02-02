@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 import { DialogData } from '../schieber/dialog-endround/dialog-endround.component';
-import { moveItemInArray, transferArrayItem, CdkDragDrop } from '@angular/cdk/drag-drop';
 import { Router } from '@angular/router';
 import { GameDatabase } from '../game-database';
 import { FormControl, FormGroup } from '@angular/forms';
@@ -47,7 +46,7 @@ export class DialogStartSchieberComponent implements OnInit {
     this.playerFourOptions = this.getFilteredValue(this.playerControls.get('playerFourControl') as FormControl);
   }
 
-  private getFilteredValue(inputControl: FormControl): Observable<string[]>{
+  private getFilteredValue(inputControl: FormControl): Observable<string[]> {
     return inputControl.valueChanges.pipe(
       startWith(''),
       map(value => this.filter(value))
@@ -62,9 +61,9 @@ export class DialogStartSchieberComponent implements OnInit {
 
   public startSchieber(): void {
     const game = this.gameDatabase.createSchieber(
-      this.playerControls.get('playerOneControl').value, 
-      this.playerControls.get('playerTwoControl').value, 
-      this.playerControls.get('playerThreeControl').value, 
+      this.playerControls.get('playerOneControl').value,
+      this.playerControls.get('playerTwoControl').value,
+      this.playerControls.get('playerThreeControl').value,
       this.playerControls.get('playerFourControl').value);
     this.dialogRef.close();
     this.router.navigate(['/Schieber', game.gameId]);
