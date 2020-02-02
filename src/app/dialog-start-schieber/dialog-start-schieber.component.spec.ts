@@ -13,7 +13,8 @@ describe('DialogStartSchieberComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ ReactiveFormsModule, MatAutocompleteModule, MatButtonModule, MatDialogModule, NoopAnimationsModule, RouterTestingModule.withRoutes([]) ],
+      imports: [ ReactiveFormsModule, MatAutocompleteModule, MatButtonModule,
+                 MatDialogModule, NoopAnimationsModule, RouterTestingModule.withRoutes([]) ],
       declarations: [ DialogStartSchieberComponent ],
       providers: [
         { provide: MAT_DIALOG_DATA, useValue: {} },
