@@ -1,16 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '../../../node_modules/@angular/material';
 import { DialogEndRoundComponent, DialogData } from './dialog-endround/dialog-endround.component';
 import { DialogWeisenComponent } from './dialog-weisen/dialog-weisen.component';
-import { SchieberSpiel, SchieberTeam, SchieberRunde } from '../schieber-spiel';
+import { SchieberSpiel } from '../schieber-spiel';
 import { GameDatabase } from '../game-database';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'jass-schieber',
   templateUrl: './schieber.component.html',
   styleUrls: ['./schieber.component.scss']
 })
-export class SchieberComponent {
+export class SchieberComponent implements OnInit {
   public get currentPlayer(): string {
     switch (this.game.runden.length % 4) {
       case 0:
@@ -27,10 +28,22 @@ export class SchieberComponent {
   }
 
   public game: SchieberSpiel;
+  public id: number;
 
 
-  constructor(public dialog: MatDialog, public gameData: GameDatabase) {
-    this.game = gameData.loadSchieberById(3);
+  constructor(public dialog: MatDialog, public gameData: GameDatabase, private route: ActivatedRoute) {
+  }
+
+  ngOnInit() {
+    this.route.paramMap.subscribe(map => {
+      const gameId = +map.get('gameId');
+      if (gameId) {
+        this.game = this.gameData.loadSchieberById(gameId);
+      }
+      else {
+        this.game = undefined;
+      }
+    });
   }
 
   openEndRoundDialog(): void {
