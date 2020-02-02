@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DialogWeisenComponent } from './dialog-weisen.component';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
 describe('DialogWeisenComponent', () => {
   let component: DialogWeisenComponent;
@@ -8,7 +9,12 @@ describe('DialogWeisenComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DialogWeisenComponent ]
+      imports: [],
+      declarations: [ DialogWeisenComponent ],
+      providers: [
+        { provide: MAT_DIALOG_DATA, useValue: {} },
+        { provide: MatDialogRef, useValue: {} }
+      ]
     })
     .compileComponents();
   }));

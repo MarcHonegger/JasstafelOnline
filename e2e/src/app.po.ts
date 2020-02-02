@@ -5,7 +5,7 @@ export class AppPage {
     return browser.get(browser.baseUrl) as Promise<any>;
   }
 
-  getTitleText() {
-    return element(by.css('jass-root .content span')).getText() as Promise<string>;
+  getPageContent() {
+    return element(by.css('jass-root')).getText() as Promise<string>;
   }
 }

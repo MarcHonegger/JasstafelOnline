@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DialogEndRoundComponent } from './dialog-endround.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule, MatDialogModule, MatInputModule, MatButtonToggleModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('DialogEndRoundComponent', () => {
   let component: DialogEndRoundComponent;
@@ -8,7 +11,12 @@ describe('DialogEndRoundComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DialogEndRoundComponent ]
+      imports: [ ReactiveFormsModule, MatButtonModule, MatDialogModule, MatInputModule, MatButtonToggleModule, NoopAnimationsModule ],
+      declarations: [ DialogEndRoundComponent ],
+      providers: [
+        { provide: MAT_DIALOG_DATA, useValue: {} },
+        { provide: MatDialogRef, useValue: {} }
+      ]
     })
     .compileComponents();
   }));

@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SchieberComponent } from './schieber.component';
+import { MatButtonModule, MatDialogModule } from '@angular/material';
+import { SchieberZComponent } from './schieber-z/schieber-z.component';
 
 describe('SchieberComponent', () => {
   let component: SchieberComponent;
@@ -8,7 +10,8 @@ describe('SchieberComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SchieberComponent ]
+      imports: [ MatButtonModule, MatDialogModule ],
+      declarations: [ SchieberComponent, SchieberZComponent ]
     })
     .compileComponents();
   }));

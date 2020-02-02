@@ -1,16 +1,16 @@
 import { AppPage } from './app.po';
 import { browser, logging } from 'protractor';
 
-describe('workspace-project App', () => {
+describe('start page', () => {
   let page: AppPage;
 
   beforeEach(() => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
+  it('should display the text Schieber', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('JasstafelOnline app is running!');
+    expect(page.getPageContent()).toContain('Schieber');
   });
 
   afterEach(async () => {
