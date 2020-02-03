@@ -1,40 +1,45 @@
 <div class="bigger-text">Schieber Starte</div>
 
 <form [formGroup]="playerControls">
-    <mat-form-field>
-        <input type="text" placeholder="Spiller eis" matInput formControlName="playerOneControl" [matAutocomplete]="autoOne">
-        <mat-autocomplete autoActiveFirstOption #autoOne="matAutocomplete">
-        <mat-option *ngFor="let player of playerOneOptions | async" [value]="player">
-            {{player}}
-        </mat-option>
-        </mat-autocomplete>
-    </mat-form-field>
-    <mat-form-field>
-        <input type="text" placeholder="Spiller zwei" matInput formControlName="playerTwoControl" [matAutocomplete]="autoTwo">
-        <mat-autocomplete autoActiveFirstOption #autoTwo="matAutocomplete">
-        <mat-option *ngFor="let player of playerTwoOptions | async" [value]="player">
-            {{player}}
-        </mat-option>
-        </mat-autocomplete>
-    </mat-form-field>
-    <mat-form-field>
-        <input type="text" placeholder="Spiller drüü" matInput formControlName="playerThreeControl" [matAutocomplete]="autoThree">
-        <mat-autocomplete autoActiveFirstOption #autoThree="matAutocomplete">
-        <mat-option *ngFor="let player of playerThreeOptions | async" [value]="player">
-            {{player}}
-        </mat-option>
-        </mat-autocomplete>
-    </mat-form-field>
-    <mat-form-field>
-        <input type="text" placeholder="Spiller viir" matInput formControlName="playerFourControl" [matAutocomplete]="autoFour">
-        <mat-autocomplete autoActiveFirstOption #autoFour="matAutocomplete">
-        <mat-option *ngFor="let player of playerFourOptions | async" [value]="player">
-            {{player}}
-        </mat-option>
-        </mat-autocomplete>
-    </mat-form-field>
+    <div fxLayoutGap="5px">
+        <h2>Team eis</h2>
+        <mat-form-field>
+            <input type="text" placeholder="Spiller eis" matInput formControlName="playerOneControl" [matAutocomplete]="autoOne">
+            <mat-autocomplete autoActiveFirstOption #autoOne="matAutocomplete">
+            <mat-option *ngFor="let player of playerOneOptions | async" [value]="player">
+                {{player}}
+            </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+        <mat-form-field>
+            <input type="text" placeholder="Spiller drüü" matInput formControlName="playerThreeControl" [matAutocomplete]="autoThree">
+            <mat-autocomplete autoActiveFirstOption #autoThree="matAutocomplete">
+            <mat-option *ngFor="let player of playerThreeOptions | async" [value]="player">
+                {{player}}
+            </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </div>
+    <div fxLayoutGap="5px">
+        <h2>Team eis</h2>
+        <mat-form-field>
+            <input type="text" placeholder="Spiller zwei" matInput formControlName="playerTwoControl" [matAutocomplete]="autoTwo">
+            <mat-autocomplete autoActiveFirstOption #autoTwo="matAutocomplete">
+            <mat-option *ngFor="let player of playerTwoOptions | async" [value]="player">
+                {{player}}
+            </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+        <mat-form-field>
+            <input type="text" placeholder="Spiller viir" matInput formControlName="playerFourControl" [matAutocomplete]="autoFour">
+            <mat-autocomplete autoActiveFirstOption #autoFour="matAutocomplete">
+            <mat-option *ngFor="let player of playerFourOptions | async" [value]="player">
+                {{player}}
+            </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </div>
 </form>
-  
 
 <mat-dialog-actions>
     <button color="warn" mat-raised-button (click)="closeDialog()">

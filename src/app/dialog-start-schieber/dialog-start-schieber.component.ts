@@ -6,6 +6,7 @@ import { GameDatabase } from '../game-database';
 import { FormControl, FormGroup } from '@angular/forms';
 import { startWith, map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { PlayerDatabase } from '../player-database';
 
 @Component({
   selector: 'jass-dialog-start-schieber',
@@ -13,16 +14,6 @@ import { Observable } from 'rxjs';
   styleUrls: ['./dialog-start-schieber.component.scss']
 })
 export class DialogStartSchieberComponent implements OnInit {
-  players = [
-    'Franz',
-    'Heidi',
-    'Franzina',
-    'Marc',
-    'Pascal',
-    'Jeanette',
-    'Michi'
-  ];
-
   playerOneOptions: Observable<string[]>;
   playerTwoOptions: Observable<string[]>;
   playerThreeOptions: Observable<string[]>;
@@ -35,9 +26,26 @@ export class DialogStartSchieberComponent implements OnInit {
     playerFourControl: new FormControl()
   });
 
+  private get playerOne() {
+    return this.playerControls.get('playerOneControl').value;
+  }
+
+  private get playerTwo() {
+    return this.playerControls.get('playerTwoControl').value;
+  }
+
+  private get playerThree() {
+    return this.playerControls.get('playerThreeControl').value;
+  }
+
+  private get playerFour() {
+    return this.playerControls.get('playerFourControl').value;
+  }
+
   constructor(public dialogRef: MatDialogRef<DialogStartSchieberComponent, DialogData>,
               public router: Router,
-              private gameDatabase: GameDatabase) { }
+              private gameDatabase: GameDatabase,
+              private playerDatabase: PlayerDatabase) {}
 
   ngOnInit() {
     this.playerOneOptions = this.getFilteredValue(this.playerControls.get('playerOneControl') as FormControl);
@@ -56,15 +64,12 @@ export class DialogStartSchieberComponent implements OnInit {
   private filter(value: string): string[] {
     const filterValue = value.toLowerCase();
 
-    return this.players.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
+    return this.playerDatabase.getPlayers().filter(option => option.toLowerCase().indexOf(filterValue) === 0);
   }
 
   public startSchieber(): void {
-    const game = this.gameDatabase.createSchieber(
-      this.playerControls.get('playerOneControl').value,
-      this.playerControls.get('playerTwoControl').value,
-      this.playerControls.get('playerThreeControl').value,
-      this.playerControls.get('playerFourControl').value);
+    this.playerDatabase.addPlayers([this.playerOne, this.playerTwo, this.playerThree, this.playerFour]);
+    const game = this.gameDatabase.createSchieber(this.playerOne, this.playerTwo, this.playerThree, this.playerFour);
     this.dialogRef.close();
     this.router.navigate(['/Schieber', game.gameId]);
   }
