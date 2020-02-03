@@ -16,12 +16,14 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { MatIconModule } from '@angular/material';
 
 import { SchieberZComponent } from './schieber/schieber-z/schieber-z.component';
 import { DialogEndRoundComponent } from './schieber/dialog-endround/dialog-endround.component';
 import { DialogWeisenComponent } from './schieber/dialog-weisen/dialog-weisen.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { DialogStartSchieberComponent } from './dialog-start-schieber/dialog-start-schieber.component';
+import { OverviewGamesComponent } from './overview-games/overview-games.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import { DialogStartSchieberComponent } from './dialog-start-schieber/dialog-sta
     DialogEndRoundComponent,
     DialogWeisenComponent,
     HomepageComponent,
-    DialogStartSchieberComponent
+    DialogStartSchieberComponent,
+    OverviewGamesComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +49,8 @@ import { DialogStartSchieberComponent } from './dialog-start-schieber/dialog-sta
     MatCheckboxModule,
     ReactiveFormsModule,
     DragDropModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent],

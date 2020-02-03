@@ -4,7 +4,7 @@
     <div fxLayoutGap="5px">
         <h2>Team eis</h2>
         <mat-form-field>
-            <input type="text" placeholder="Spiller eis" matInput formControlName="playerOneControl" [matAutocomplete]="autoOne">
+            <input type="text" placeholder="Spiller eis" matInput formControlName="playerOneControl" required [matAutocomplete]="autoOne">
             <mat-autocomplete autoActiveFirstOption #autoOne="matAutocomplete">
             <mat-option *ngFor="let player of playerOneOptions | async" [value]="player">
                 {{player}}
@@ -12,7 +12,7 @@
             </mat-autocomplete>
         </mat-form-field>
         <mat-form-field>
-            <input type="text" placeholder="Spiller drüü" matInput formControlName="playerThreeControl" [matAutocomplete]="autoThree">
+            <input type="text" placeholder="Spiller drüü" matInput formControlName="playerThreeControl" required  [matAutocomplete]="autoThree">
             <mat-autocomplete autoActiveFirstOption #autoThree="matAutocomplete">
             <mat-option *ngFor="let player of playerThreeOptions | async" [value]="player">
                 {{player}}
@@ -23,7 +23,7 @@
     <div fxLayoutGap="5px">
         <h2>Team eis</h2>
         <mat-form-field>
-            <input type="text" placeholder="Spiller zwei" matInput formControlName="playerTwoControl" [matAutocomplete]="autoTwo">
+            <input type="text" placeholder="Spiller zwei" matInput formControlName="playerTwoControl" required  [matAutocomplete]="autoTwo">
             <mat-autocomplete autoActiveFirstOption #autoTwo="matAutocomplete">
             <mat-option *ngFor="let player of playerTwoOptions | async" [value]="player">
                 {{player}}
@@ -31,7 +31,7 @@
             </mat-autocomplete>
         </mat-form-field>
         <mat-form-field>
-            <input type="text" placeholder="Spiller viir" matInput formControlName="playerFourControl" [matAutocomplete]="autoFour">
+            <input type="text" placeholder="Spiller viir" matInput formControlName="playerFourControl" required  [matAutocomplete]="autoFour">
             <mat-autocomplete autoActiveFirstOption #autoFour="matAutocomplete">
             <mat-option *ngFor="let player of playerFourOptions | async" [value]="player">
                 {{player}}
@@ -45,7 +45,7 @@
     <button color="warn" mat-raised-button (click)="closeDialog()">
         Schlüüse
     </button>
-    <button color="primary" mat-raised-button (click)="startSchieber()">
+    <button color="primary" mat-raised-button [disabled]="playerControls.invalid" (click)="startSchieber()">
         spiil erstelle
     </button>
 </mat-dialog-actions>

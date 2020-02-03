@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { DialogStartSchieberComponent } from '../dialog-start-schieber/dialog-start-schieber.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'jass-homepage',
@@ -9,7 +10,7 @@ import { DialogStartSchieberComponent } from '../dialog-start-schieber/dialog-st
 })
 export class HomepageComponent implements OnInit {
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, private router: Router) { }
 
   ngOnInit() {
   }
@@ -20,5 +21,9 @@ export class HomepageComponent implements OnInit {
       height: '80vh',
       disableClose: true
     });
+  }
+
+  openOverviewGames() {
+    this.router.navigate(['/ÜbersichtSpiele']);
   }
 }

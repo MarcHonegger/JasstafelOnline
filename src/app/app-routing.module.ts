@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { SchieberComponent } from './schieber/schieber.component';
 import { CoiffeurComponent } from './coiffeur/coiffeur.component';
 import { HomepageComponent } from './homepage/homepage.component';
+import { OverviewGamesComponent } from './overview-games/overview-games.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,10 @@ const routes: Routes = [
   {
     path: 'Coiffeur',
     component: CoiffeurComponent
+  },
+  {
+    path: 'ÜbersichtSpiele',
+    component: OverviewGamesComponent
   }
 ];
 

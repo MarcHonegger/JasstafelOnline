@@ -3,7 +3,7 @@ import { MatDialogRef } from '@angular/material';
 import { DialogData } from '../schieber/dialog-endround/dialog-endround.component';
 import { Router } from '@angular/router';
 import { GameDatabase } from '../game-database';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, FormBuilder, RequiredValidator } from '@angular/forms';
 import { startWith, map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { PlayerDatabase } from '../player-database';
@@ -14,44 +14,49 @@ import { PlayerDatabase } from '../player-database';
   styleUrls: ['./dialog-start-schieber.component.scss']
 })
 export class DialogStartSchieberComponent implements OnInit {
+
+  private get playerOne() {
+    return this.playerControls.get('playerOneControl') as FormControl;
+  }
+
+  private get playerTwo() {
+    return this.playerControls.get('playerTwoControl') as FormControl;
+  }
+
+  private get playerThree() {
+    return this.playerControls.get('playerThreeControl') as FormControl;
+  }
+
+  private get playerFour() {
+    return this.playerControls.get('playerFourControl') as FormControl;
+  }
+
   playerOneOptions: Observable<string[]>;
   playerTwoOptions: Observable<string[]>;
   playerThreeOptions: Observable<string[]>;
   playerFourOptions: Observable<string[]>;
 
-  playerControls = new FormGroup({
-    playerOneControl: new FormControl(),
-    playerTwoControl: new FormControl(),
-    playerThreeControl: new FormControl(),
-    playerFourControl: new FormControl()
-  });
+  public readonly playerControls: FormGroup;
 
-  private get playerOne() {
-    return this.playerControls.get('playerOneControl').value;
-  }
-
-  private get playerTwo() {
-    return this.playerControls.get('playerTwoControl').value;
-  }
-
-  private get playerThree() {
-    return this.playerControls.get('playerThreeControl').value;
-  }
-
-  private get playerFour() {
-    return this.playerControls.get('playerFourControl').value;
-  }
-
-  constructor(public dialogRef: MatDialogRef<DialogStartSchieberComponent, DialogData>,
-              public router: Router,
-              private gameDatabase: GameDatabase,
-              private playerDatabase: PlayerDatabase) {}
+  constructor(
+    public dialogRef: MatDialogRef<DialogStartSchieberComponent, DialogData>,
+    public router: Router,
+    private gameDatabase: GameDatabase,
+    private playerDatabase: PlayerDatabase,
+    fb: FormBuilder) {
+      this.playerControls = fb.group({
+        playerOneControl: [''],
+        playerTwoControl: [''],
+        playerThreeControl: [''],
+        playerFourControl: ['']
+      });
+    }
 
   ngOnInit() {
-    this.playerOneOptions = this.getFilteredValue(this.playerControls.get('playerOneControl') as FormControl);
-    this.playerTwoOptions = this.getFilteredValue(this.playerControls.get('playerTwoControl') as FormControl);
-    this.playerThreeOptions = this.getFilteredValue(this.playerControls.get('playerThreeControl') as FormControl);
-    this.playerFourOptions = this.getFilteredValue(this.playerControls.get('playerFourControl') as FormControl);
+    this.playerOneOptions = this.getFilteredValue(this.playerOne);
+    this.playerTwoOptions = this.getFilteredValue(this.playerTwo);
+    this.playerThreeOptions = this.getFilteredValue(this.playerThree);
+    this.playerFourOptions = this.getFilteredValue(this.playerFour);
   }
 
   private getFilteredValue(inputControl: FormControl): Observable<string[]> {
@@ -68,8 +73,12 @@ export class DialogStartSchieberComponent implements OnInit {
   }
 
   public startSchieber(): void {
-    this.playerDatabase.addPlayers([this.playerOne, this.playerTwo, this.playerThree, this.playerFour]);
-    const game = this.gameDatabase.createSchieber(this.playerOne, this.playerTwo, this.playerThree, this.playerFour);
+    this.playerDatabase.addPlayers([this.playerOne.value, this.playerTwo.value, this.playerThree.value, this.playerFour.value]);
+    const game = this.gameDatabase.createSchieber(
+      this.playerOne.value,
+      this.playerTwo.value,
+      this.playerThree.value,
+      this.playerFour.value);
     this.dialogRef.close();
     this.router.navigate(['/Schieber', game.gameId]);
   }
